@@ -85,6 +85,7 @@ function signUp(event) {
       name: inputName.value,
       email: inputEmail.value,
       password: inputPassword.value,
+      logged: false,
     });
 
     localStorage.setItem("listUser", JSON.stringify(listUser));
@@ -94,7 +95,7 @@ function signUp(event) {
     });
 
     setTimeout(() => {
-      window.location.href = "../index.html";
+      window.location.href = "../../index.html";
     }, 3000);
   } else {
     sendMessage({
@@ -108,20 +109,20 @@ function signUp(event) {
 
 iconEye.addEventListener("click", () => {
   if (inputPassword.getAttribute("type") == "password") {
-    iconEye.src = "../assets/icon-eye-closed.svg";
+    iconEye.src = "../../assets/icon-eye-closed.svg";
     inputPassword.setAttribute("type", "text");
   } else {
-    iconEye.src = "../assets/icon-eye-open.svg";
+    iconEye.src = "../../assets/icon-eye-open.svg";
     inputPassword.setAttribute("type", "password");
   }
 });
 
 iconEyeConfirm.addEventListener("click", () => {
   if (inputConfirmPassword.getAttribute("type") == "password") {
-    iconEyeConfirm.src = "../assets/icon-eye-closed.svg";
+    iconEyeConfirm.src = "../../assets/icon-eye-closed.svg";
     inputConfirmPassword.setAttribute("type", "text");
   } else {
-    iconEyeConfirm.src = "../assets/icon-eye-open.svg";
+    iconEyeConfirm.src = "../../assets/icon-eye-open.svg";
     inputConfirmPassword.setAttribute("type", "password");
   }
 });
@@ -161,4 +162,9 @@ function clearInput() {
     input.setAttribute("style", "border-color: rgb(18, 18, 53)");
     input.value = "";
   });
+
+  labelConfirmPassword.innerHTML = "Confirm Password";
+  labelPassword.innerHTML = "Password";
+  labelEmail.innerHTML = "Email";
+  labelName.innerHTML = "Name";
 }

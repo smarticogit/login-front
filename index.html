@@ -12,12 +12,23 @@
       <h1>Login</h1>
 
       <div class="float">
-        <input class="email" type="text" required />
+        <input
+          class="email"
+          type="text"
+          autocomplete="current-email"
+          required
+        />
         <label for="email">Email</label>
       </div>
 
       <div class="float">
-        <input type="password" placeholder="" id="password" required />
+        <input
+          type="password"
+          placeholder=""
+          id="password"
+          autocomplete="current-password"
+          required
+        />
         <label for="Password">Password</label>
         <img class="eye-open" src="./assets/icon-eye-open.svg" alt="icon-eye" />
       </div>
@@ -37,7 +48,7 @@
 
       <div class="dont-have">
         <p>Don't have an account?</p>
-        <a href="./pages/cadastro.html"> Sign up</a>
+        <a href="./pages/sign-up/sign-up.html"> Sign up</a>
       </div>
     </form>
   </body>
