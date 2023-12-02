@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../assets/background-signIn.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 400px;
+  background-color: #ffffff20;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #00000050;
+  padding: 20px;
+}
+
+form:hover {
+  background-color: #ffffff95;
+  transition: all 1s ease-out;
+}
+
+h1 {
+  text-align: center;
+  font-size: 25px;
+  color: rgb(28, 28, 137);
+  margin-bottom: 15px;
+}
+
+.float input {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  border: 0;
+  border-bottom: 2px rgb(18, 18, 53) solid;
+  background-color: transparent;
+  outline: none;
+  min-width: 180px;
+  font-size: 14px;
+  transition: all 0.3s ease-out;
+}
+
+.float input:focus {
+  border-bottom: 2px rgb(71, 71, 206) solid;
+}
+
+.float {
+  position: relative;
+  padding: 13px;
+}
+
+.float label {
+  font-size: 13px;
+  position: absolute;
+  top: 0;
+  left: 5;
+  margin-top: 13px;
+  transition: all 0.3s ease-out;
+}
+
+.float input:focus + label,
+.float input:valid + label {
+  margin-top: 0;
+  font-size: 11px;
+  color: rgb(71, 71, 206);
+  margin-top: 0;
+}
+
+.eye-open,
+.eye-open-confirm {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+button {
+  padding: 8px 15px;
+  border-radius: 10px;
+  background: transparent;
+  margin: 20px 0;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid #00000023;
+}
+
+button:hover {
+  background-color: rgb(92, 92, 151);
+  color: #fff;
+  transition: all 0.5s linear;
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.toast {
+  display: none;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 3px 0;
+}

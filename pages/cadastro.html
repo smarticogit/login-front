@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./cadastro.css" />
+    <script src="./cadastro.js" defer></script>
+    <title>:: Sign Up ::</title>
+  </head>
+  <body>
+    <form>
+      <h1>Sign Up</h1>
+
+      <div class="float">
+        <input class="name" type="text" required />
+        <label class="labelName" for="name">Name</label>
+      </div>
+
+      <div class="float">
+        <input class="email" type="text" required />
+        <label class="labelEmail" for="email">Email</label>
+      </div>
+
+      <div class="float">
+        <input class="password" type="password" required />
+        <label class="labelPassword" for="Password">Password</label>
+        <img
+          class="eye-open"
+          src="../assets/icon-eye-open.svg"
+          alt="icon-eye"
+        />
+      </div>
+
+      <div class="float">
+        <input class="confirmPassword" type="password" required />
+        <label class="labelConfirmPassword" for="confirmPassword"
+          >Confirm Password</label
+        >
+        <img
+          class="eye-open-confirm"
+          src="../assets/icon-eye-open.svg"
+          alt="icon-eye"
+        />
+      </div>
+
+      <div class="justify-center">
+        <button onclick="signUp(event)">Sign Up</button>
+      </div>
+      <div class="toast"></div>
+    </form>
+  </body>
+</html>
