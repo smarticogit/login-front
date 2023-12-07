@@ -1,11 +1,10 @@
 const toast = document.querySelector(".toast");
 const inputPassword = document.querySelector("#password");
 const iconEye = document.querySelector(".eye-open");
-
-let inputEmail = document.querySelector(".email");
-let labelEmail = document.querySelector(".labelEmail");
-
-let labelPassword = document.querySelector(".labelPassword");
+const remember = document.querySelector(".input-remember");
+const inputEmail = document.querySelector("#email");
+const labelEmail = document.querySelector(".labelEmail");
+const labelPassword = document.querySelector(".labelPassword");
 
 iconEye.addEventListener("click", () => {
   if (inputPassword.getAttribute("type") == "password") {
@@ -20,13 +19,14 @@ iconEye.addEventListener("click", () => {
 function login(event) {
   event.preventDefault();
 
-  let listUser = JSON.parse(localStorage.getItem("listUser") || "[]");
+  const listUser = JSON.parse(localStorage.getItem("listUser") || "[]");
 
-  if (listUser.length === 0) {
+  if (listUser.length === 0 || !listUser) {
     sendMessage({
       message: "Unregistered user",
       type: "error",
     });
+    return;
   }
 
   if (inputEmail.value === "" || inputPassword.value === "") {
@@ -34,36 +34,46 @@ function login(event) {
       message: "Complete all the fields correctly",
       type: "error",
     });
+    return;
   }
 
-  const user = {
-    email: inputEmail.value,
-    password: inputPassword.value,
-  };
+  const userRegistered = listUser.find(
+    (user) => user.email === inputEmail.value
+  );
 
-  listUser.forEach((item) => {
-    const { email, password } = item;
+  if (!userRegistered) {
+    sendMessage({
+      message: "Email or password incorrect",
+      type: "error",
+    });
+    clearInput();
+  } else {
+    const { email, password } = userRegistered;
 
-    if (email !== user.email && password !== user.password) {
+    if (password !== inputPassword.value || email !== inputEmail.value) {
       sendMessage({
         message: "Email or password incorrect",
         type: "error",
       });
-    } else {
-      localStorage.setItem("token", generateToken());
-
-      sendMessage({
-        message: "Login successfully",
-        type: "success",
-      });
-
-      setTimeout(() => {
-        window.location.href = "./pages/main/main.html";
-      }, 3000);
+      clearInput();
+      return;
     }
-  });
+    localStorage.setItem("token", generateToken(email));
+    sendMessage({
+      message: "Login successfully",
+      type: "success",
+    });
 
-  clearInput();
+    if (remember.checked) {
+      setCookie(email, password, 1);
+    }
+
+    setTimeout(() => {
+      window.location.href = "./pages/main/main.html";
+    }, 3000);
+
+    clearInput();
+  }
 }
 
 function sendMessage({ message, type }) {
@@ -88,7 +98,7 @@ function clearInput() {
   inputPassword.value = "";
 }
 
-function generateToken() {
+function generateToken(email) {
   const currentDate = new Date();
 
   const expirationTime = new Date(currentDate.getTime() + 1 * 60000);
@@ -96,5 +106,47 @@ function generateToken() {
   const hour = expirationTime.getHours();
   const minutes = expirationTime.getMinutes();
 
-  return `moto-${hour}-${minutes}-code`;
+  return `moto-${email}-${hour}-${minutes}-code`;
+}
+
+window.onload = () => {
+  const rememberMeCookie = getCookie();
+
+  if (rememberMeCookie) {
+    const { email, password } = rememberMeCookie;
+
+    if (email && password) {
+      inputEmail.value = email;
+      inputPassword.value = password;
+    }
+    login({
+      preventDefault: function () {},
+    });
+  }
+};
+
+function setCookie(email, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+  const expires = "; expires=" + date.toUTCString();
+  document.cookie = `${email}=${encodeURIComponent(
+    value
+  )}; expires=${expires}; path=/`;
+}
+
+function getCookie() {
+  const cookies = document.cookie.split("=");
+
+  if (!document.cookie) {
+    return false;
+  }
+
+  return {
+    email: cookies[0],
+    password: cookies[1],
+  };
+}
+
+function forgetMe(name) {
+  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
 }

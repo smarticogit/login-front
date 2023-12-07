@@ -8,33 +8,22 @@
     <title>:: Login ::</title>
   </head>
   <body>
-    <form>
+    <form id="form">
       <h1>Login</h1>
 
       <div class="float">
-        <input
-          class="email"
-          type="text"
-          autocomplete="current-email"
-          required
-        />
+        <input type="text" id="email" name="email" required />
         <label for="email">Email</label>
       </div>
 
       <div class="float">
-        <input
-          type="password"
-          placeholder=""
-          id="password"
-          autocomplete="current-password"
-          required
-        />
-        <label for="Password">Password</label>
+        <input type="password" id="password" name="password" required />
+        <label for="password">Password</label>
         <img class="eye-open" src="./assets/icon-eye-open.svg" alt="icon-eye" />
       </div>
 
       <div class="justify-center remember">
-        <input type="checkbox" />
+        <input class="input-remember" type="checkbox" />
         <p>Remember me</p>
       </div>
 

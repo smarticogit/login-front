@@ -16,10 +16,58 @@ body {
   font-family: "Quicksand", sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
 h1 {
   margin-top: 20px;
+}
+
+.container {
+  width: 95vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ffffff90;
+  border-radius: 10px;
+  position: relative;
+}
+
+.container .user-bar {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.user-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px 0 50px;
+  height: 50px;
+  background-color: rgb(224, 224, 234);
+  position: relative;
+  border-radius: 10px;
+}
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 10px;
+}
+
+.greeting {
+  font-size: 15px;
+}
+
+.logout {
+  width: 25px;
+  height: 25px;
 }
