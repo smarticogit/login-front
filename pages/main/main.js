@@ -75,5 +75,8 @@ function getNameLocalStorage(tokenEmail) {
     }
   }
   const firstName = name.split(" ");
-  greeting.textContent = `Olá ${firstName[0]}`;
+  const nameFormated = firstName[0];
+  greeting.textContent = `Olá ${
+    nameFormated[0].toUpperCase() + nameFormated.slice(1)
+  }`;
 }
